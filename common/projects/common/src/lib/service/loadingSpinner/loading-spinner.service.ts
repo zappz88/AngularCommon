@@ -8,11 +8,11 @@ export class LoadingSpinnerService {
   private isLoadingSubject = new BehaviorSubject<boolean>(false);
   isLoading$ = this.isLoadingSubject.asObservable();
 
-  show() {
+  show() : void {
     this.isLoadingSubject.next(true);
   }
 
-  hide() {
+  hide() : void {
     this.isLoadingSubject.next(false);
   }
 }

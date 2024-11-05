@@ -1,5 +1,4 @@
-export class User 
-{
+export class User {
     id: number = 0;
     userId: number = 0;
     username: string = "test";

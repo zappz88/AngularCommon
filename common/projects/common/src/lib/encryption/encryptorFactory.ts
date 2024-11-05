@@ -5,9 +5,9 @@ import {
 
 export enum EncryptorType { Basic, Base64 }
 
-export class EncryptorFactory{
+export class EncryptorFactory {
 
-    static getEncryptor(encryptorType: EncryptorType){
+    static getEncryptor(encryptorType: EncryptorType) : Encryptor {
         
         let encryptor: any = null;
 
@@ -24,7 +24,7 @@ export class EncryptorFactory{
         return encryptor;
     }
 
-    static getEncryptorByString(encryptorTypeString: string){
+    static getEncryptorByString(encryptorTypeString: string) : Encryptor {
         
         let encryptor: any = null;
 

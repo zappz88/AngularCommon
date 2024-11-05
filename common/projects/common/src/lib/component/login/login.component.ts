@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { UserService } from '../../service/serviceModule';
+import { AuthenticationService, UserService, StateService } from '../../service/serviceModule';
 import { User, Credential } from '../../model/modelModule';
 import { Observable } from 'rxjs';
 import { RegexPattern } from '../../security/securityModule';
@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginFormBuilder: FormBuilder, 
     private userService: UserService,
+    private authenticationService: AuthenticationService,
+    private stateService: StateService,
     private route: ActivatedRoute,
     private router: Router,
     private loadingSpinnerService: LoadingSpinnerService
@@ -79,8 +81,11 @@ export class LoginComponent implements OnInit {
       this.userService.getUserByCredentials(this.loginFormGroup.value.username, this.loginFormGroup.value.password)
         .subscribe({
           next: (data) => {
-            this.user = data;
+            this.stateService.setUser(data);
+            console.log(this.stateService);
             if(this.user){
+              this.authenticationService.setSession();
+              console.log(this.authenticationService.getSession());
               this.router.navigate([this.redirect]);
             }
           },

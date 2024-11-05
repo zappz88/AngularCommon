@@ -3,9 +3,9 @@ import {
     EncryptorType 
 } from "./encryptionModule";
 
-export class CompositeEncryptionHandler{
+export class CompositeEncryptionHandler {
 
-    static encrypt(val: string, encryptorTypeArray: EncryptorType[]) : string{
+    static encrypt(val: string, encryptorTypeArray: EncryptorType[]) : string {
         let result = val;
         for(let encryptorType in encryptorTypeArray) 
         {
@@ -14,7 +14,7 @@ export class CompositeEncryptionHandler{
         return result;
     }
 
-    static decrypt(val: string, encryptorTypeArray: EncryptorType[]) : string{
+    static decrypt(val: string, encryptorTypeArray: EncryptorType[]) : string {
         let result = val;
         for(let encryptorType in encryptorTypeArray) 
         {
@@ -23,7 +23,7 @@ export class CompositeEncryptionHandler{
         return result;
     }
 
-    static encryptByString(val: string, encryptorStringArray: string[]) : string{
+    static encryptByString(val: string, encryptorStringArray: string[]) : string {
         let result = val;
         for(let encryptorString in encryptorStringArray) 
         {
@@ -32,7 +32,7 @@ export class CompositeEncryptionHandler{
         return result;
     }
 
-    static decryptByString(val: string, encryptorStringArray: string[]) : string{
+    static decryptByString(val: string, encryptorStringArray: string[]) : string {
         let result = val;
         for(let encryptorString in encryptorStringArray) 
         {

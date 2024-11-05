@@ -1,4 +1,4 @@
-export class JsonPayload{
+export class JsonPayload {
 
     data: any;
 

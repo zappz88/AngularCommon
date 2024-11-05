@@ -1,7 +1,10 @@
-export class Encryptor{
+export class Encryptor {
     key: string = 'ADMIN';
 
-    encrypt(val: string){
+    encrypt(val: string) : string {
+        if(val === null || val === ''){
+            return val;
+        }
         let result: number[] = [];
         for(let i = 0, j = 0; j < val.length; i++, j++){
             if(i === this.key.length){
@@ -14,7 +17,10 @@ export class Encryptor{
         return result.join(",");
     }
     
-    decrypt(val: string){
+    decrypt(val: string) : string {
+        if(val === null || val === ''){
+            return val;
+        }
         let result: number[] = [];
         let valArray = val.split(",");
         for(let i = 0, j = 0; j < valArray.length; i++, j++){

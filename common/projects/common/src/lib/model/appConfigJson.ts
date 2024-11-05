@@ -1,9 +1,8 @@
 import data from "../app.json";
 
-export class AppConfigJson 
-{
+export class AppConfigJson {
     data: any = null;
-    encryptor: string = "Basic";
+    encryptor: string = "BASIC";
     userServiceUri: string = "https://localhost:7117/api/User";
 
     constructor() {
