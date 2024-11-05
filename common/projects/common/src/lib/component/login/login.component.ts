@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgIf } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { UserService } from '../../service/serviceModule';
 import { User, Credential } from '../../model/modelModule';
 import { Observable } from 'rxjs';
 import { RegexPattern } from '../../security/securityModule';
+import { LoadingSpinnerService } from '../../service/loadingSpinner/loading-spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ import { RegexPattern } from '../../security/securityModule';
     MatCardModule, 
     MatFormFieldModule, 
     MatInputModule, 
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgIf
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -38,12 +40,15 @@ export class LoginComponent implements OnInit {
   });
   
   user: any;
+  isLoading: boolean = false;
+  @Input() redirect: string = "/home";
 
   constructor(
     private loginFormBuilder: FormBuilder, 
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
+    private loadingSpinnerService: LoadingSpinnerService
     ) {
 
   }
@@ -52,6 +57,9 @@ export class LoginComponent implements OnInit {
     this.loginFormGroup = this.loginFormBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
+    });
+    this.loadingSpinnerService.isLoading$.subscribe(result => {
+      this.isLoading = result;
     })
   }
 
@@ -65,11 +73,26 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.loadingSpinnerService.show();
+
     if(this.loginFormGroup.valid){
-      this.userService.getUserByCredentials(this.loginFormGroup.value.username, this.loginFormGroup.value.password).subscribe(result => { this.user = result });
-      if(this.user){
-        this.router.navigate(['/home']);
-      }
+      this.userService.getUserByCredentials(this.loginFormGroup.value.username, this.loginFormGroup.value.password)
+        .subscribe({
+          next: (data) => {
+            this.user = data;
+            if(this.user){
+              this.router.navigate([this.redirect]);
+            }
+          },
+          error: (error) => {
+            console.log(error);
+            this.loadingSpinnerService.hide();
+          },
+
+          complete: () => {
+            this.loadingSpinnerService.hide();
+          }
+      });
     }
     else{
       console.error("Invalid form");

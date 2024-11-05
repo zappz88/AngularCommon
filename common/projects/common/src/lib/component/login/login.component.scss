@@ -1,6 +1,9 @@
 .container {
     height: 400px;
     width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
     border-radius: 25px;
     transition: opacity 0 100 2;
