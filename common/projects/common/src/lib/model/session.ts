@@ -6,12 +6,12 @@ export class Session {
 
     }
 
-    setToken(val: string){
+    setToken(val: string) : Session {
         this.token = val;
         return this;
     }
 
-    setExpiration(val: number){
+    setExpiration(val: number) : Session {
         this.expiration = val;
         return this;
     }

@@ -11,37 +11,37 @@ export class User {
         
     }
 
-    setId(val: number){
+    setId(val: number) : User {
         this.id = val;
         return this;
     }
 
-    setUserId(val: number){
+    setUserId(val: number) : User {
         this.userId = val;
         return this;
     }
 
-    setUsername(val: string){
+    setUsername(val: string) : User {
         this.username = val;
         return this;
     }
 
-    setPassword(val: string){
+    setPassword(val: string) : User {
         this.password = val;
         return this;
     }
 
-    setFirstName(val: string){
+    setFirstName(val: string) : User {
         this.firstName = val;
         return this;
     }
 
-    setMiddleName(val: string){
+    setMiddleName(val: string) : User {
         this.middleName = val;
         return this;
     }
 
-    setLastName(val: string){
+    setLastName(val: string) : User {
         this.lastName = val;
         return this;
     }

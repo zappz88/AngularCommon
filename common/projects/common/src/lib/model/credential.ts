@@ -8,12 +8,12 @@ export class Credential {
         this.password = password;
     }
 
-    setUsername(val: string){
+    setUsername(val: string): Credential {
         this.username = val;
         return this;
     }
 
-    setPassword(val: string){
+    setPassword(val: string) : Credential {
         this.password = val;
         return this;
     }

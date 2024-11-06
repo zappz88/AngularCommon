@@ -6,7 +6,7 @@ export class JsonPayload {
         this.data = data;
     }
 
-    setData(val: any){
+    setData(val: any) : JsonPayload {
         this.data = val;
         return this;
     }

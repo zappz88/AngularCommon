@@ -69,15 +69,15 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-  onSubmit(){
+  onSubmit() : void {
     this.register();
   }
 
-  onEnter(){
+  onEnter() : void {
     this.register();
   }
 
-  register(){
+  register() : void {
     this.loadingSpinnerService.show();
     console.log("Registering user...");
     if(this.registrationFormGroup.valid){

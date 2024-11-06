@@ -70,16 +70,15 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit()
-  {
+  onSubmit() : void {
     this.login();
   }
 
-  onEnter(){
+  onEnter() : void {
     this.login();
   }
 
-  login(){
+  login() : void {
     this.loadingSpinnerService.show();
     console.log("Logging in user...");
     if(this.loginFormGroup.valid){
