@@ -3,7 +3,7 @@ import {
     Base64Encryptor 
 } from "./encryptionModule";
 
-export enum EncryptorType { Basic, Base64 }
+export enum EncryptorType { BASIC, BASE64 }
 
 export class EncryptorFactory {
 
@@ -12,10 +12,10 @@ export class EncryptorFactory {
         let encryptor: any = null;
 
         switch(encryptorType){
-            case EncryptorType.Basic:
+            case EncryptorType.BASIC:
                 encryptor = new Encryptor();
                 break;
-            case EncryptorType.Base64:
+            case EncryptorType.BASE64:
                 encryptor = new Base64Encryptor();
                 break;
             default:
@@ -29,10 +29,10 @@ export class EncryptorFactory {
         let encryptor: any = null;
 
         switch(encryptorTypeString){
-            case "Basic":
+            case "BASIC":
                 encryptor = new Encryptor();
                 break;
-            case "Base64":
+            case "BASE64":
                 encryptor = new Base64Encryptor();
                 break;
             default:

@@ -1,8 +1,7 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +13,8 @@ import { User, Credential } from '../../model/modelModule';
 import { Observable } from 'rxjs';
 import { RegexPattern } from '../../security/securityModule';
 import { LoadingSpinnerService } from '../../service/loadingSpinner/loading-spinner.service';
+import { fadeIn, fadeOut } from '../../animations/animationsModule';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,8 @@ import { LoadingSpinnerService } from '../../service/loadingSpinner/loading-spin
     MatProgressSpinnerModule,
     NgIf
   ],
+  animations: [
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -39,9 +42,11 @@ export class LoginComponent implements OnInit {
       password: new FormControl('')
   });
   
-  user: any;
+  user: User | null = null;
   isLoading: boolean = false;
   @Input() redirect: string = "/home";
+
+  fadeOut: boolean = true;
 
   constructor(
     private loginFormBuilder: FormBuilder, 
@@ -76,26 +81,25 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.loadingSpinnerService.show();
-
+    console.log("Logging in user...");
     if(this.loginFormGroup.valid){
       this.userService.getUserByCredentials(this.loginFormGroup.value.username, this.loginFormGroup.value.password)
         .subscribe({
           next: (data) => {
-            this.stateService.setUser(data);
-            console.log(this.stateService);
             if(this.user){
-              this.authenticationService.setSession();
-              console.log(this.authenticationService.getSession());
-              this.router.navigate([this.redirect]);
+              this.stateService.setUser(data);
             }
           },
           error: (error) => {
-            console.log(error);
+            console.error(error);
             this.loadingSpinnerService.hide();
           },
 
           complete: () => {
+            console.log("Login successful.");
             this.loadingSpinnerService.hide();
+            this.authenticationService.setSession();
+            this.router.navigate([this.redirect]);
           }
       });
     }

@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Credential, User, UserCredential } from '../../model/modelModule';
+import { ActivatedRouteSnapshot, GuardResult, MaybeAsync, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { Credential, User, UserCredential, Session, AppJsonConfig } from '../../model/modelModule';
 import { Encryptor, EncryptorFactory, EncryptorType } from '../../encryption/encryptionModule';
-import { Session } from '../../model/session';
+import { HttpClient } from '@angular/common/http';
+import { StateService } from '../../service/serviceModule';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
   key: string = 'NeuroIQ';
-  encryptor: Encryptor = EncryptorFactory.getEncryptor(EncryptorType.Basic);
-  
-  constructor() {
+  encryptor: Encryptor | null = null;
+  appjsonconfig: AppJsonConfig | null = null;
 
+  constructor(
+    private stateService?: StateService
+  ) {
+    if(this.stateService){
+      this.appjsonconfig = this.stateService.getAppJsonConfig();
+      if(this.appjsonconfig){
+        this.encryptor = EncryptorFactory.getEncryptorByString(this.appjsonconfig.encryptor);
+      }
+    }
   }
 
   isLoggedIn() : boolean {
@@ -24,32 +31,49 @@ export class AuthenticationService {
   }
 
   setSession() : void {
-    sessionStorage.setItem(this.key, 
-      this.encryptor.encrypt(
-        JSON.stringify({
-          token: this.key,
-          expiration: this.configureExpiration(1)
-        }
-      )
-    ))
+    if(this.encryptor){
+      localStorage.setItem(this.key, 
+        this.encryptor.encrypt(
+          JSON.stringify({
+            token: this.key,
+            expiration: this.configureSessionExpirationMinutes(15)
+          }
+        )
+      ))
+    }
+    else{
+      throw new Error("Encryptor not implemented exception.");
+    }
   }
 
   getSession() : Session | null {
-    const session = sessionStorage.getItem(this.key)
-    if(session === null){
-      return null;
+    if(this.encryptor){
+      const session = localStorage.getItem(this.key)
+      if(session === null){
+        return null;
+      }
+      const json = JSON.parse(this.encryptor.decrypt(session));
+      return new Session()
+              .setToken(json.token)
+              .setExpiration(json.expiration);
     }
-    const json = JSON.parse(this.encryptor.decrypt(session));
-    return new Session()
-            .setToken(json.token)
-            .setExpiration(json.expiration);
-
+    else{
+      throw new Error("Encryptor not implemented exception.");
+    }
   }
 
-  configureExpiration(minutes: number) : number {
+  deleteSession() : void {
+    if(this.encryptor){
+      localStorage.removeItem(this.key)
+    }
+    else{
+      throw new Error("Encryptor not implemented exception.");
+    }
+  }
+
+  configureSessionExpirationMinutes(minutes: number) : number {
     const date = new Date();
-    const minutesToAdd = 15;
-    date.setMinutes(date.getMinutes() + minutesToAdd);
+    date.setMinutes(date.getMinutes() + minutes);
     return date.getTime();
   }
 }

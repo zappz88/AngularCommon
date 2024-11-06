@@ -5,25 +5,25 @@ import {
 
 export class CompositeEncryptionHandler {
 
-    static encrypt(val: string, encryptorTypeArray: EncryptorType[]) : string {
+    static encrypt(val: string, ...encryptorTypeArray: EncryptorType[]) : string {
         let result = val;
-        for(let encryptorType in encryptorTypeArray) 
+        for(let i = 0; i < encryptorTypeArray.length; i++) 
         {
-            result = EncryptorFactory.getEncryptor(encryptorType as unknown as EncryptorType).encrypt(result);
+            result = EncryptorFactory.getEncryptor(encryptorTypeArray[i]).encrypt(result);
         }
         return result;
     }
 
-    static decrypt(val: string, encryptorTypeArray: EncryptorType[]) : string {
+    static decrypt(val: string, ...encryptorTypeArray: EncryptorType[]) : string {
         let result = val;
-        for(let encryptorType in encryptorTypeArray) 
+        for(let i = 0; i < encryptorTypeArray.length; i++) 
         {
-            result = EncryptorFactory.getEncryptor(encryptorType as unknown as EncryptorType).decrypt(result);
+            result = EncryptorFactory.getEncryptor(encryptorTypeArray[i]).decrypt(result);
         }
         return result;
     }
 
-    static encryptByString(val: string, encryptorStringArray: string[]) : string {
+    static encryptByString(val: string, ...encryptorStringArray: string[]) : string {
         let result = val;
         for(let encryptorString in encryptorStringArray) 
         {
@@ -32,7 +32,7 @@ export class CompositeEncryptionHandler {
         return result;
     }
 
-    static decryptByString(val: string, encryptorStringArray: string[]) : string {
+    static decryptByString(val: string, ...encryptorStringArray: string[]) : string {
         let result = val;
         for(let encryptorString in encryptorStringArray) 
         {

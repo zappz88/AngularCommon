@@ -42,7 +42,7 @@ export class RegistrationComponent implements OnInit {
     password: new FormControl('')
   });
 
-  user: any;
+  user: User | null = null;
   isLoading: boolean = false;
   @Input() redirect: string = "/login";
 
@@ -79,7 +79,7 @@ export class RegistrationComponent implements OnInit {
 
   register(){
     this.loadingSpinnerService.show();
-
+    console.log("Registering user...");
     if(this.registrationFormGroup.valid){
       this.user = new User()
                     .setUserId(5)
@@ -102,6 +102,7 @@ export class RegistrationComponent implements OnInit {
           },
 
           complete: () => {
+            console.log("Registration successful.");
             this.loadingSpinnerService.hide();
           }
       });

@@ -1,19 +1,11 @@
-import { User } from "./modelModule";
+import { AppJsonConfig, User } from "./modelModule";
 
 export class State {
 
+    appconfigjson: AppJsonConfig | null = null;
     user: User | null = null;
 
     constructor() {
         
-    }
-
-    setUser(val: User) : State { 
-        this.user = val;
-        return this;
-    }
-
-    getUser() : User | null {
-        return this.user;
     }
 }

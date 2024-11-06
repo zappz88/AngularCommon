@@ -17,19 +17,12 @@ import { AuthenticationService } from '../../service/serviceModule';
 })
 export class NavbarComponent {
 
-  isAuthenticated: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    this.authenticationService.isAuthenticated$.subscribe(result => {
-      this.isAuthenticated = result;
-    })
-  }
 
-  onClick(route: any){
-    this.router.navigate(route);
   }
 }
