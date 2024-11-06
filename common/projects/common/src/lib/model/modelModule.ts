@@ -1,4 +1,4 @@
-import { AppJsonConfig } from "./appJsonConfig";
+import { AppJsonConfigBase } from "./appJsonConfigBase";
 import { Credential } from "./credential";
 import { UserCredential } from "./userCredential";
 import { User } from "./user";
@@ -7,7 +7,7 @@ import { State } from "./state";
 import { Session } from "./session";
 
 export { 
-    AppJsonConfig, 
+    AppJsonConfigBase, 
     Credential, 
     UserCredential, 
     User, 

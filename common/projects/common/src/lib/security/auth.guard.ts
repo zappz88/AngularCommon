@@ -1,8 +1,8 @@
 import { CanActivateFn } from '@angular/router';
 import { AuthenticationService, StateService } from '../service/serviceModule';
-import { Injectable } from '@angular/core';
+import { AppJsonConfigBase } from '../model/appJsonConfigBase';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const authenticationService: AuthenticationService = new AuthenticationService();
+  const authenticationService: AuthenticationService = new AuthenticationService(new AppJsonConfigBase());
   return authenticationService.isLoggedIn();
 };

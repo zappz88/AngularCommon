@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { ActivatedRouteSnapshot, GuardResult, MaybeAsync, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { Credential, User, UserCredential, Session, AppJsonConfig } from '../../model/modelModule';
+import { Credential, User, UserCredential, Session, AppJsonConfigBase } from '../../model/modelModule';
 import { Encryptor, EncryptorFactory, EncryptorType } from '../../encryption/encryptionModule';
 import { HttpClient } from '@angular/common/http';
-import { StateService } from '../../service/serviceModule';
+
+export const APP_JSON_CONFIG_TOKEN = new InjectionToken<any>('APP_JSON_CONFIG_TOKEN');
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +13,12 @@ import { StateService } from '../../service/serviceModule';
 export class AuthenticationService {
   key: string = 'NeuroIQ';
   encryptor: Encryptor | null = null;
-  appjsonconfig: AppJsonConfig | null = null;
+  appjsonconfig: AppJsonConfigBase | any;
 
   constructor(
-    private stateService?: StateService
+    private appJsonConfig: AppJsonConfigBase
   ) {
-    if(this.stateService){
-      this.appjsonconfig = this.stateService.getAppJsonConfig();
-      if(this.appjsonconfig){
-        this.encryptor = EncryptorFactory.getEncryptorByString(this.appjsonconfig.encryptor);
-      }
-    }
+    this.encryptor = EncryptorFactory.getEncryptorByString(this.appJsonConfig.encryptor);
   }
 
   isLoggedIn() : boolean {

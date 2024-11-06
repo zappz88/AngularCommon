@@ -6,7 +6,7 @@ import {
   Credential,
   UserCredential,
   JsonPayload,
-  AppJsonConfig 
+  AppJsonConfigBase 
 } from '../../model/modelModule';
 import { 
   Encryptor, 
@@ -21,19 +21,15 @@ import { StateService } from '../serviceModule';
 export class UserService {
 
   uri: string | null = null;
-  appjsonconfig: AppJsonConfig | null = null;
   encryptor: Encryptor | null = null;
 
   constructor(
     private httpClient: HttpClient,
-    private stateService: StateService
+    private stateService: StateService,
+    private appjsonconfig: AppJsonConfigBase
   ) { 
-    this.appjsonconfig = this.stateService.getAppJsonConfig();
-    console.log(this.appjsonconfig);
-    if(this.appjsonconfig !== null){
       this.uri = this.appjsonconfig.userServiceUri;
       this.encryptor = EncryptorFactory.getEncryptorByString(this.appjsonconfig.encryptor);
-    }
   }
 
   getUserByCredentials(username: string, password: string) : Observable<User>{
