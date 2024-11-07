@@ -7,6 +7,8 @@ import { ContactComponent } from "./contact/contact.component";
 import { ServicesComponent } from "./services/services.component";
 import { HomeComponent } from "./home/home.component";
 import { WebApplicationCardComponent } from "./web-application-card/web-application-card.component";
+import { SimpleTableComponent } from "./simple-table/simple-table.component";
+import { CompoundTableComponent } from "./compound-table/compound-table.component";
 
 export { 
     LoginComponent, 
@@ -17,5 +19,7 @@ export {
     ServicesComponent,
     ContactComponent,
     HomeComponent,
-    WebApplicationCardComponent 
+    WebApplicationCardComponent,
+    SimpleTableComponent,
+    CompoundTableComponent
 }

@@ -1,7 +1,6 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +11,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerService, UserService } from '../../service/serviceModule';
 import { User, Credential } from '../../model/modelModule';
 import { Observable } from 'rxjs';
-import { RegexPattern } from '../../security/securityModule';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
@@ -23,7 +21,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     CommonModule, 
     ReactiveFormsModule, 
     RouterLink,
-    HttpClientModule, 
     MatButtonModule, 
     MatCardModule, 
     MatDialogModule,
