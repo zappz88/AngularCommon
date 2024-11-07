@@ -1,0 +1,15 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    min-height: 500px;
+    max-height: 500px;
+    width: 1200px;
+    min-width: 1200px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0px;
+    background-color: white;
+}

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, User } from '../../model/modelModule';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,22 @@ import { State, User } from '../../model/modelModule';
 export class StateService {
 
   state: State = new State();
+  private stateSubject = new BehaviorSubject<State>(this.state);
+  state$ = this.stateSubject.asObservable();
 
   constructor() { }
 
-  getUser() : User | null {
-    return this.state.user;
+  setState(val: State){
+    this.stateSubject.next(val);
   }
 
-  setUser(user : User) : void {
-    this.state.user = user;
+  setUser(val: User){
+    this.state.user = val;
+    this.stateSubject.next(this.state);
+  }
+
+  setIsLoggedIn(val: boolean){
+    this.state.isLoggedIn = val;
+    this.stateSubject.next(this.state);
   }
 }

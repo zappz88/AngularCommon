@@ -1,10 +1,19 @@
+$primary-background-color: #3752db;
+$primary-text-color: white;
+
 .main{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    height: 100px;
+    height: 50px;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: $primary-background-color;
+    color: white;
 }
 
 .logo{
@@ -12,6 +21,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    color: $primary-text-color;
 }
 
 .buttons{
@@ -19,4 +29,5 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    color: $primary-text-color;
 }

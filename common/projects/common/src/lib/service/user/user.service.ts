@@ -25,7 +25,6 @@ export class UserService {
 
   constructor(
     private httpClient: HttpClient,
-    private stateService: StateService,
     private appjsonconfig: AppJsonConfigBase
   ) { 
       this.uri = this.appjsonconfig.userServiceUri;

@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { AuthenticationService } from '../../service/serviceModule';
+import { AuthenticationService, StateService } from '../../service/serviceModule';
+import { State } from '../../model/modelModule';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
+    CommonModule,
     RouterLink,
     MatButtonModule,
     MatMenuModule
@@ -15,14 +18,35 @@ import { AuthenticationService } from '../../service/serviceModule';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
+  state: State | null = null;
+  isLoggednIn: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private stateService: StateService
   ) {
+    this.stateService.state$.subscribe((result) => {
+      this.isLoggednIn = result.isLoggedIn;
+    })
+  }
+  ngOnInit(): void {
+    this.checkSession();
+  }
+  
+  checkSession(){
+    const session = this.authenticationService.getSession();
+    if(session){
+      this.stateService.setIsLoggedIn(session.isLoggedIn);
+    }
+  }
 
+  logOut(){
+    this.stateService.setIsLoggedIn(false);
+    this.authenticationService.deleteSession();
+    this.router.navigate(['']);
   }
 }

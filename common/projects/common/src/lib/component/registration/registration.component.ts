@@ -13,6 +13,8 @@ import { LoadingSpinnerService, UserService } from '../../service/serviceModule'
 import { User, Credential } from '../../model/modelModule';
 import { Observable } from 'rxjs';
 import { RegexPattern } from '../../security/securityModule';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registration',
@@ -24,10 +26,10 @@ import { RegexPattern } from '../../security/securityModule';
     HttpClientModule, 
     MatButtonModule, 
     MatCardModule, 
+    MatDialogModule,
     MatFormFieldModule, 
     MatInputModule, 
-    MatProgressSpinnerModule,
-    NgIf  
+    MatProgressSpinnerModule,  
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
@@ -51,7 +53,8 @@ export class RegistrationComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private loadingSpinnerService: LoadingSpinnerService
+    private loadingSpinnerService: LoadingSpinnerService,
+    private dialog: MatDialog
     ) {
   }
 
@@ -99,6 +102,8 @@ export class RegistrationComponent implements OnInit {
           error: (error) => {
             console.log(error);
             this.loadingSpinnerService.hide();
+            this.dialog.open(ErrorDialogComponent, { data: { message: error.message }, height: '250px', width: '750px' });
+
           },
 
           complete: () => {

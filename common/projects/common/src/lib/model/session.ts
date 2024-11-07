@@ -1,6 +1,7 @@
 export class Session {
     token: string  = '';
     expiration: number = 0;
+    isLoggedIn: boolean = false;
 
     constructor() {
 
@@ -13,6 +14,11 @@ export class Session {
 
     setExpiration(val: number) : Session {
         this.expiration = val;
+        return this;
+    }
+
+    setIsLoggedIn(val: boolean) : Session {
+        this.isLoggedIn = val;
         return this;
     }
 }

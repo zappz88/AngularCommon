@@ -1,12 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-error',
   standalone: true,
-  imports: [],
+  imports: [
+    MatDialogModule,
+    MatFormFieldModule
+  ],
   templateUrl: './error.component.html',
-  styleUrl: './error.component.css'
+  styleUrl: './error.component.scss'
 })
 export class ErrorComponent {
 
+  @Input() error: string | any;
+
+  constructor(private dialog: MatDialog) {
+
+  }
+
+  open(){
+    this.dialog.open(this.error);
+  }
 }

@@ -1,0 +1,18 @@
+$primary-background-color: white;
+$grid-gap: 25px;
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: $grid-gap $grid-gap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 0px;
+    min-height: 80%;
+    height: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    width: 80%;
+    max-width: 80%;
+}

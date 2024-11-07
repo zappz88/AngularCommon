@@ -4,8 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Credential, User, UserCredential, Session, AppJsonConfigBase } from '../../model/modelModule';
 import { Encryptor, EncryptorFactory, EncryptorType } from '../../encryption/encryptionModule';
 import { HttpClient } from '@angular/common/http';
-
-export const APP_JSON_CONFIG_TOKEN = new InjectionToken<any>('APP_JSON_CONFIG_TOKEN');
+import { StateService } from '../serviceModule';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,10 @@ export class AuthenticationService {
   encryptor: Encryptor | null = null;
   appjsonconfig: AppJsonConfigBase | any;
 
+
   constructor(
-    private appJsonConfig: AppJsonConfigBase
+    private appJsonConfig: AppJsonConfigBase,
+    private stateService: StateService
   ) {
     this.encryptor = EncryptorFactory.getEncryptorByString(this.appJsonConfig.encryptor);
   }
@@ -32,7 +33,8 @@ export class AuthenticationService {
         this.encryptor.encrypt(
           JSON.stringify({
             token: this.key,
-            expiration: this.configureSessionExpirationMinutes(15)
+            expiration: this.configureSessionExpirationMinutes(15),
+            isLoggedIn: this.stateService.state.isLoggedIn
           }
         )
       ))
@@ -51,7 +53,8 @@ export class AuthenticationService {
       const json = JSON.parse(this.encryptor.decrypt(session));
       return new Session()
               .setToken(json.token)
-              .setExpiration(json.expiration);
+              .setExpiration(json.expiration)
+              .setIsLoggedIn(json.isLoggedIn);
     }
     else{
       throw new Error("Encryptor not implemented exception.");

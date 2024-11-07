@@ -6,19 +6,24 @@
                     <p>Login</p>
                 </mat-card-header>
                 <mat-card-content class="card-body">
-                        <mat-form-field>
+                    <div class="credential-input-section">
+                        <mat-form-field class="input-field">
                             <mat-label for="username">Username</mat-label>
-                            <input matInput type="text" name="username" id="username" placeholder="username" formControlName="username">
+                            <input class="input-field" matInput type="text" name="username" id="username" placeholder="username" formControlName="username">
                         </mat-form-field>
-                        <mat-form-field>
+                        <mat-form-field class="input-field">
                             <mat-label for="username">Password</mat-label>
-                            <input matInput type="password" name="password" id="password" placeholder="password" formControlName="password">
+                            <input class="input-field" matInput type="password" name="password" id="password" placeholder="password" formControlName="password">
                         </mat-form-field>
+                    </div>
+                    <div>
+
+                    </div>
                 </mat-card-content>
                 <mat-card-footer class="card-footer">
                     <mat-card-actions class="card-actions">
-                        <button mat-flat-button type="submit" [disabled]="this.loginFormGroup.invalid">Submit</button>
-                        <button mat-flat-button [routerLink]="['/registration']" routerLinkActive="router-link-active" >Registration</button> 
+                        <button mat-flat-button [routerLink]="['/registration']" routerLinkActive="router-link-active" >Register</button> 
+                        <button mat-flat-button type="submit" [disabled]="this.loginFormGroup.invalid">Login</button>
                     </mat-card-actions> 
                 </mat-card-footer>
             </mat-card>

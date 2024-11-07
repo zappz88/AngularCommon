@@ -1,4 +1,4 @@
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -9,12 +9,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthenticationService, UserService, StateService } from '../../service/serviceModule';
-import { User, Credential } from '../../model/modelModule';
+import { User, Credential, State } from '../../model/modelModule';
 import { Observable } from 'rxjs';
 import { RegexPattern } from '../../security/securityModule';
 import { LoadingSpinnerService } from '../../service/loadingSpinner/loading-spinner.service';
 import { fadeIn, fadeOut } from '../../animations/animationsModule';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +31,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     MatFormFieldModule, 
     MatInputModule, 
     MatProgressSpinnerModule,
-    NgIf
+    MatDialogModule
   ],
   animations: [
   ],
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
   
   user: User | null = null;
   isLoading: boolean = false;
+  state: State | null = null;
   @Input() redirect: string = "/home";
 
   fadeOut: boolean = true;
@@ -55,9 +58,15 @@ export class LoginComponent implements OnInit {
     private stateService: StateService,
     private route: ActivatedRoute,
     private router: Router,
-    private loadingSpinnerService: LoadingSpinnerService
+    private loadingSpinnerService: LoadingSpinnerService,
+    private dialog: MatDialog
     ) {
-
+      this.loadingSpinnerService.isLoading$.subscribe((result) => {
+        this.isLoading = result;
+      });
+      this.stateService.state$.subscribe((result) => {
+        this.state = result;
+      })
   }
   
   ngOnInit(): void {
@@ -65,9 +74,6 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    this.loadingSpinnerService.isLoading$.subscribe(result => {
-      this.isLoading = result;
-    })
   }
 
   onSubmit() : void {
@@ -91,12 +97,14 @@ export class LoginComponent implements OnInit {
           },
           error: (error) => {
             console.error(error);
+            this.dialog.open(ErrorDialogComponent, { data: { message: error.message }, height: '250px', width: '750px' });
             this.loadingSpinnerService.hide();
           },
 
           complete: () => {
             console.log("Login successful.");
             this.loadingSpinnerService.hide();
+            this.stateService.setIsLoggedIn(true);
             this.authenticationService.setSession();
             this.router.navigate([this.redirect]);
           }
