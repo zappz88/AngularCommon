@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +18,7 @@ import { State } from '../../model/modelModule';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   state: State | null = null;
   isLoggednIn: boolean = false;
@@ -32,16 +32,6 @@ export class NavbarComponent implements OnInit {
     this.stateService.state$.subscribe((result) => {
       this.isLoggednIn = result.isLoggedIn;
     })
-  }
-  ngOnInit(): void {
-    this.checkSession();
-  }
-  
-  checkSession(){
-    const session = this.authenticationService.getSession();
-    if(session){
-      this.stateService.setIsLoggedIn(session.isLoggedIn);
-    }
   }
 
   logOut(){
