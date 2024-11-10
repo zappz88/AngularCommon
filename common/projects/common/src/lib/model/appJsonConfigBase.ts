@@ -1,4 +1,4 @@
-import appjson from '../app.json';
+import appjson from '../../app.json';
 
 export class AppJsonConfigBase {
     encryptor: string = "BASIC";

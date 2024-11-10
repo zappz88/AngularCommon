@@ -4,7 +4,7 @@ import { WebApplicationInfo } from '../../model/webApplicationInfo';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-web-application-card',
+  selector: 'lib-web-application-card',
   standalone: true,
   imports: [
     MatCardModule

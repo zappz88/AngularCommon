@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, User } from '../../model/modelModule';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +8,12 @@ import { BehaviorSubject } from 'rxjs';
 export class StateService {
 
   state: State = new State();
-  private stateSubject = new BehaviorSubject<State>(this.state);
-  state$ = this.stateSubject.asObservable();
+  stateSubject: BehaviorSubject<State> = new BehaviorSubject<State>(this.state);
+  state$: Observable<State> = this.stateSubject.asObservable();
 
-  constructor() { }
+  constructor() { 
+    this.stateSubject.next(this.state);
+  }
 
   setState(val: State){
     this.stateSubject.next(val);

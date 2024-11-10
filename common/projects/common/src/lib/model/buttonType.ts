@@ -1,0 +1,1 @@
+export enum ButtonType { Increment, Decrement };

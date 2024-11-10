@@ -6,6 +6,8 @@ import { JsonPayload } from "./jsonPayload";
 import { State } from "./state";
 import { Session } from "./session";
 import { WebApplicationJsonConfigBase } from "./webApplicationJsonConfigBase";
+import { ButtonType } from "./buttonType";
+import { ButtonPressEvent } from "./event/buttonPressEvent";
 
 export { 
     AppJsonConfigBase, 
@@ -15,5 +17,7 @@ export {
     JsonPayload, 
     State, 
     Session,
-    WebApplicationJsonConfigBase
+    WebApplicationJsonConfigBase,
+    ButtonType,
+    ButtonPressEvent
 }

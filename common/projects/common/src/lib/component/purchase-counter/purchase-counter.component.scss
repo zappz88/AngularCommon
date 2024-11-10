@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85px;
+    min-height: 85px;
+    max-height: 85px;
+}
+
+.mat-field{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+}
+
+button{
+    margin-bottom: 15px;
+}

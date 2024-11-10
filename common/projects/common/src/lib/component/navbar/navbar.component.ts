@@ -7,7 +7,7 @@ import { AuthenticationService, StateService } from '../../service/serviceModule
 import { State } from '../../model/modelModule';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'lib-navbar',
   standalone: true,
   imports: [
     CommonModule,
@@ -22,6 +22,12 @@ export class NavbarComponent {
 
   state: State | null = null;
   isLoggednIn: boolean = false;
+
+  logoRoute: string = '/logout';
+  logOutRoute: string = '/logout';
+  homeRoute: string = '/home';
+  aboutRoute: string = '/about';
+  contactRoute: string = '/contact';
 
   constructor(
     private route: ActivatedRoute,

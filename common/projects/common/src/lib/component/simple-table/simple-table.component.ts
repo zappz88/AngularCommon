@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 
 @Component({
-  selector: 'app-simple-table',
+  selector: 'lib-simple-table',
   standalone: true,
   imports: [
     CommonModule,

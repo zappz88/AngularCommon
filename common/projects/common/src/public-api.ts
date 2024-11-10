@@ -11,3 +11,4 @@ export * from './lib/service/serviceModule';
 export * from './lib/security/securityModule';
 export * from './lib/http/httpModule';
 export * from './lib/angular-material/angularMaterialModule';
+export * from './lib/model/event/eventModelModule';

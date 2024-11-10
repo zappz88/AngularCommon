@@ -1,4 +1,4 @@
-import appjson from '../web-applications.json';
+import appjson from '../../web-applications.json';
 import { WebApplicationInfo } from './webApplicationInfo';
 
 export class WebApplicationJsonConfigBase {

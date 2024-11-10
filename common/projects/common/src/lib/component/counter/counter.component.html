@@ -1,0 +1,8 @@
+<section class="container">
+    <button mat-flat-button (click)="handleDecrementButtonPressed();" id="decrementButton">-</button>
+    <mat-form-field class="mat-field">
+        <mat-label>QTY</mat-label>
+        <input matInput style="text-align: center;" type="text" readonly="readonly" id="quantity" [(ngModel)]="count">
+    </mat-form-field>
+    <button mat-flat-button (click)="handleIncrementButtonPressed()" id="incrementButton">+</button>
+</section>

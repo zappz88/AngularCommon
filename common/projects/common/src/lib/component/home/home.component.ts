@@ -8,7 +8,7 @@ import { SimpleTableComponent } from "../simple-table/simple-table.component";
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
-  selector: 'app-home',
+  selector: 'lib-home',
   standalone: true,
   imports: [
     CommonModule,

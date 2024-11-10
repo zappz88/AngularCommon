@@ -3,7 +3,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-error',
+  selector: 'lib-error',
   standalone: true,
   imports: [
     MatDialogModule,

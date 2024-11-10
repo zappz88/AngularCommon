@@ -9,6 +9,8 @@ import { HomeComponent } from "./home/home.component";
 import { WebApplicationCardComponent } from "./web-application-card/web-application-card.component";
 import { SimpleTableComponent } from "./simple-table/simple-table.component";
 import { CompoundTableComponent } from "./compound-table/compound-table.component";
+import { CounterComponent } from "./counter/counter.component";
+import { PurchaseCounterComponent } from "./purchase-counter/purchase-counter.component";
 
 export { 
     LoginComponent, 
@@ -21,5 +23,7 @@ export {
     HomeComponent,
     WebApplicationCardComponent,
     SimpleTableComponent,
-    CompoundTableComponent
+    CompoundTableComponent,
+    CounterComponent,
+    PurchaseCounterComponent
 }

@@ -15,7 +15,7 @@ import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-registration',
+  selector: 'lib-registration',
   standalone: true,
   imports: [
     CommonModule, 

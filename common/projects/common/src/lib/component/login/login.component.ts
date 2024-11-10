@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink, Routes } from '@angular/router';
+import { Router, RouterLink, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthenticationService, UserService, StateService } from '../../service/serviceModule';
-import { User, Credential, State } from '../../model/modelModule';
+import { User, State } from '../../model/modelModule';
 import { LoadingSpinnerService } from '../../service/loadingSpinner/loading-spinner.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 @Component({
-  selector: 'app-login',
+  selector: 'lib-login',
   standalone: true,
   imports: [
     CommonModule, 
@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private stateService: StateService,
-    private route: ActivatedRoute,
     private router: Router,
     private loadingSpinnerService: LoadingSpinnerService,
     private dialog: MatDialog

@@ -33,7 +33,7 @@ export class AuthenticationService {
         this.encryptor.encrypt(
           JSON.stringify({
             token: this.key,
-            expiration: this.configureSessionExpirationMinutes(15),
+            expiration: this.configureSessionExpirationMinutes(this.appJsonConfig.sessionTimeout),
             isLoggedIn: this.stateService.state.isLoggedIn
           }
         )
