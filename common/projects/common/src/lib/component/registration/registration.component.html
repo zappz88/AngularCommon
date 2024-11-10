@@ -29,12 +29,12 @@
                 </mat-card-content>
                 <mat-card-footer class="card-footer">
                     <mat-card-actions class="card-actions">
-                        <button mat-flat-button type="submit" [disabled]="this.registrationFormGroup.invalid">Submit</button>
                         <button mat-flat-button [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
+                        <button mat-flat-button type="submit" [disabled]="this.registrationFormGroup.invalid">Submit</button>
                     </mat-card-actions>
                 </mat-card-footer>
             </mat-card>
         </form>
     </div>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
 </section>

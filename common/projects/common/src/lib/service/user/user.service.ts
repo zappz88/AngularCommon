@@ -93,6 +93,7 @@ export class UserService {
 
   insertUser(user: User) : Observable<User>{
     if(this.encryptor){
+      console.log(this.encryptor.encrypt(JSON.stringify(user)));
       const json = new JsonPayload(this.encryptor.encrypt(JSON.stringify(user)));
       return this.httpClient.post<User>(`${this.uri}/InsertUser`, json);
     }
