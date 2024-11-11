@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,11 +23,11 @@ export class NavbarComponent {
   state: State | null = null;
   isLoggednIn: boolean = false;
 
-  logoRoute: string = '/logout';
-  logOutRoute: string = '/logout';
-  homeRoute: string = '/home';
-  aboutRoute: string = '/about';
-  contactRoute: string = '/contact';
+  @Input() logoRoute: string = '/logout';
+  @Input() logOutRoute: string = '/logout';
+  @Input() homeRoute: string = '/home';
+  @Input() aboutRoute: string = '/about';
+  @Input() contactRoute: string = '/contact';
 
   constructor(
     private route: ActivatedRoute,

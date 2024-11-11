@@ -1,19 +1,42 @@
 <section class="main">
     <div class="logo">
-        <button style="color: white;" mat-button type="button" [routerLink]="[logoRoute]" routerLinkActive="router-link-active">LOGO</button>
+        <button mat-button 
+                type="button" 
+                style="color: white;" 
+                [routerLink]="[logoRoute]" 
+                routerLinkActive="router-link-active">LOGO</button>
     </div>
     <div class="buttons">
         <div>
-            <button style="color: white;" mat-button type="button" [routerLink]="[homeRoute]" routerLinkActive="router-link-active">Home</button>
+            <button mat-button 
+                    type="button" 
+                    style="color: white;" 
+                    [routerLink]="[homeRoute]" 
+                    routerLinkActive="router-link-active">Home</button>
         </div>
         <div>
-            <button style="color: white;" mat-button type="button" [routerLink]="[aboutRoute]" routerLinkActive="router-link-active">About</button>
+            <button mat-button 
+                    type="button" 
+                    style="color: white;" 
+                    [routerLink]="[aboutRoute]" 
+                    routerLinkActive="router-link-active">About</button>
         </div>
         <div>
-            <button style="color: white;" mat-button type="button" [routerLink]="[contactRoute]" routerLinkActive="router-link-active">Contact</button>
+            <button mat-button 
+                    type="button" 
+                    style="color: white;" 
+                    [routerLink]="[contactRoute]" 
+                    routerLinkActive="router-link-active">Contact</button>
         </div>
         <div>
-            <button *ngIf="isLoggednIn" (click)="logOut()" style="color: white;" mat-button type="button">Logout</button>
+            <button 
+                *ngIf="isLoggednIn" 
+                mat-button 
+                type="button"
+                (click)="logOut()" 
+                style="color: white;" 
+                [routerLink]="[logOutRoute]" 
+                routerLinkActive="router-link-active">Logout</button>
         </div>
     </div>
 </section>
