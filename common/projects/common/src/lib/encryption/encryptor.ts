@@ -22,7 +22,7 @@ export class Encryptor {
             return val;
         }
         let result: number[] = [];
-        let valArray = val.split(",");
+        let valArray = val.length > 1 ? val.split(",") : val;
         for(let i = 0, j = 0; j < valArray.length; i++, j++){
             if(i === this.key.length){
                 i = 0;

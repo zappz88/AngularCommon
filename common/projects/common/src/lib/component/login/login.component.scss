@@ -1,3 +1,5 @@
+@use '../../animations/keyframes.scss';
+
 $primary-background-color: #3752db;
 
 @mixin flex($direction: row, $justify: center, $align: center) {
