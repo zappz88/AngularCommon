@@ -45,7 +45,7 @@ export class UserService {
 
   getUserByUserCredential(userCredential: UserCredential) : Observable<User>{
     const json = new JsonPayload(this.stringifyAndEncryptJson(userCredential));
-    return this.httpClient.post<JsonPayload>(`${this.uri}/GetUserByCredential`, json)
+    return this.httpClient.post<JsonPayload>(`${this.uri}/GetUserByUserCredential`, json)
            .pipe(map((response) => this.decryptAndParseJson(response.data)));
   }
 
