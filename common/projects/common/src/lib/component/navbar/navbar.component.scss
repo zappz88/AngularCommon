@@ -1,11 +1,11 @@
+@use '../../style/common.scss';
+@use '../../style/keyframes.scss';
+
 $primary-background-color: #3752db;
 $primary-text-color: white;
 
 .main{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    @include common.flex(row, space-around, center);
     height: 50px;
     width: 100%;
     position: fixed;
@@ -17,17 +17,11 @@ $primary-text-color: white;
 }
 
 .logo{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    @include common.flex(row, space-around, center);
     color: $primary-text-color;
 }
 
 .buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    @include common.flex(row, space-around, center);
     color: $primary-text-color;
 }

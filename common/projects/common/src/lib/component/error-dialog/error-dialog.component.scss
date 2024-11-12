@@ -1,7 +1,8 @@
+@use '../../style/common.scss';
+@use '../../style/keyframes.scss';
+
 .main {
+    @include common.flex();
     height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

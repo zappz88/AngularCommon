@@ -1,8 +1,8 @@
-.main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+@use '../../style/common.scss';
+@use '../../style/keyframes.scss';
+
+.container {
+    @include common.flex(column);
     height: 500px;
     min-height: 500px;
     max-height: 500px;

@@ -1,16 +1,10 @@
-@use '../../animations/keyframes.scss';
+@use '../../style/common.scss';
+@use '../../style/keyframes.scss';
 
 $primary-background-color: #3752db;
 
-@mixin flex($direction: row, $justify: center, $align: center) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
-  }
-
 .container {
-    @include flex();
+    @include common.flex();
     height: 600px;
     min-height: 600px;
     max-height: 600px;
@@ -21,7 +15,7 @@ $primary-background-color: #3752db;
 }
 
 .card{
-    @include flex(column);
+    @include common.flex(column);
     height: 100%;
     min-height: 100%;
     max-height: 100%;
@@ -33,7 +27,7 @@ $primary-background-color: #3752db;
 }
 
 .card-header{
-    @include flex();
+    @include common.flex();
     height: 10%;
     min-height: 10%;
     max-height: 10%;
@@ -47,7 +41,7 @@ $primary-background-color: #3752db;
 }
 
 .card-body{
-    @include flex(column, space-evenly, center);
+    @include common.flex(column, space-evenly, center);
     height: 80%;
     min-height: 80%;
     max-height: 80%;
@@ -59,7 +53,7 @@ $primary-background-color: #3752db;
 }
 
 .card-footer{
-    @include flex();
+    @include common.flex();
     height: 10%;
     min-height: 10%;
     max-height: 10%;
@@ -72,7 +66,7 @@ $primary-background-color: #3752db;
 }
 
 .card-actions{
-    @include flex(row, space-around, center);
+    @include common.flex(row, space-around, center);
     height: 100px;
     min-height: 100px;
     max-height: 100px;

@@ -1,16 +1,10 @@
-@use '../../animations/keyframes.scss';
+@use '../../style/common.scss';
+@use '../../style/keyframes.scss';
 
 $primary-background-color: #3752db;
 
-@mixin flex($direction: row, $justify: center, $align: center) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
-  }
-
 .container {
-    @include flex();
+    @include common.flex();
     height: 400px;
     min-height: 400px;
     max-height: 400px;
@@ -21,7 +15,7 @@ $primary-background-color: #3752db;
 }
 
 .card{
-    @include flex(column);
+    @include common.flex(column);
     height: 400px;
     min-height: 400px;
     max-height: 400px;
@@ -32,7 +26,7 @@ $primary-background-color: #3752db;
 }
 
 .card-header{
-    @include flex();
+    @include common.flex();
     height: 100px;
     min-height: 100px;
     max-height: 100px;
@@ -45,7 +39,7 @@ $primary-background-color: #3752db;
 }
 
 .card-body{
-    @include flex(column, space-evenly, center);
+    @include common.flex(column, space-evenly, center);
     height: 200px;
     min-height: 200px;
     max-height: 200px;
@@ -56,15 +50,12 @@ $primary-background-color: #3752db;
 }
 
 .credential-input-section{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    @include common.flex(column, flex-start, flex-start);
     padding: 0px;
 }
 
 .card-footer{
-    @include flex();
+    @include common.flex();
     height: 100px;
     min-height: 100px;
     max-height: 100px;
@@ -76,10 +67,7 @@ $primary-background-color: #3752db;
 }
 
 .card-actions{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    @include common.flex(row, space-around, center);
     padding: 0px;
     min-height: 100px;
     height: 100px;

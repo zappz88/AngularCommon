@@ -1,7 +1,8 @@
+@use '../../style/common.scss';
+@use '../../style/keyframes.scss';
+
 .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include common.flex();
     height: 75px;
     min-height: 75px;
     max-height: 75px;
@@ -13,9 +14,7 @@
 }
 
 .mat-field{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include common.flex();
     height: 70px;
     width: 50px;
     min-width: 50px;
