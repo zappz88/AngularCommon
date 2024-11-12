@@ -1,7 +1,7 @@
 @use '../../style/common.scss';
 @use '../../style/keyframes.scss';
 
-.main {
+.container {
     @include common.flex();
     height: 100%;
     width: 100%;

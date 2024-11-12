@@ -4,7 +4,7 @@
 $primary-background-color: #3752db;
 $primary-text-color: white;
 
-.main{
+.container{
     @include common.flex(row, space-around, center);
     height: 50px;
     width: 100%;
